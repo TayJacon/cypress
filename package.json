@@ -1,0 +1,31 @@
+{
+  "name": "project-cypress",
+  "version": "1.0.0",
+  "description": "Automamação testes funcionais (e2e), de API Rest (backend) e de interface gráfica (frontend) com apenas uma ferramenta.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TayJacon/project-cypress.git"
+  },
+  "keywords": [
+    "cypress",
+    "automação",
+    "node"
+  ],
+  "author": "Taynara Jacon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TayJacon/project-cypress/issues"
+  },
+  "homepage": "https://github.com/TayJacon/project-cypress#readme",
+  "dependencies": {
+    "cypress-xpath": "^1.4.0"
+  },
+  "devDependencies": {
+    "cypress": "^3.6.0"
+  }
+}
