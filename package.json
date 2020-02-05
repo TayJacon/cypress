@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/TayJacon/project-cypress#readme",
   "dependencies": {
-    "cypress-xpath": "^1.4.0"
+    "cypress-xpath": "^1.4.0",
+    "package.json": "^2.0.1"
   },
   "devDependencies": {
     "cypress": "^3.6.0"

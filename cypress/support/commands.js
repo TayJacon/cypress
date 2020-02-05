@@ -23,10 +23,23 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+import locator from './locators'
 
 Cypress.Commands.add('clickAlert', (locator, message) => {
     cy.get(locator).click()
     cy.on('window:alert', msg => {
         expect(msg).to.be.equal(message)
     })
+})
+
+Cypress.Commands.add('login', (user, pwd) => {
+    cy.get(locator.LOGIN.USER).type(user)
+    cy.get(locator.LOGIN.PASSWORD).type(pwd)
+    cy.get(locator.LOGIN.BTN_LOGIN).click()
+    cy.get(locator.MESSAGE).should('contain', 'Bem vindo, tjacon!')
+})
+
+Cypress.Commands.add('reserApp', () => {
+    cy.get(locator.MENU.SETTING)
+    cy.get(locator.MENU.RESET)
 })
