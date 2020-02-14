@@ -43,3 +43,55 @@ Cypress.Commands.add('reserApp', () => {
     cy.get(locator.MENU.SETTING)
     cy.get(locator.MENU.RESET)
 })
+
+Cypress.Commands.add('getToken', (user, passwd) => {
+    cy.request({
+        method: 'POST',
+        url: '/signin',
+        body: {
+            email: user,
+            redirecionar: false,
+            senha: passwd
+        }
+    }).its('body.token').should('not.be.empty')
+        .then(token => {
+            return token
+        })
+})
+
+Cypress.Commands.add('resetRest', (user, passwd) => {
+    cy.getToken(user, passwd).then(token => {
+        cy.request({
+            method: 'GET',
+            url: '/reset',
+            header: { Authorization: `JMT ${token}` },
+        })
+    })
+})
+
+Cypress.Commands.add('getContaByName', name => {
+    cy.getToken('tjacon@tjacon', '123546789').then(token => {
+        cy.request({
+            method: 'GET',
+            url: '/contas',
+            header: { Authorization: `JMT ${token}` },
+            qs: {
+                nome: name
+            }
+        }).then(res => {
+            return res.body[0].id
+        })
+    })
+})
+
+Cypress.Commands.overwrite('request', (originalFn, ...options) => {
+    if(options.length === 1) {
+        if(Cypress.env('token')) {
+            options[0].headers = {
+                Authorization = `JWT ${Cypress.env('token')}`
+            }
+        }
+    }
+
+    return originalFn(...options)
+})

@@ -41,4 +41,9 @@ describe('Should test a functional level', () => {
         cy.get(locator.MOVIMENTACAO.BTN_SALVAR).click()
         cy.get(locator.MESSAGE).should('contain', 'sucesso')
     })
+
+    it.only('Should get balance', () => {
+        cy.get(locator.MENU.HOME).click(),
+        cy.get(locator.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain', '534,00')
+    })
 })
